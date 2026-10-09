@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>明睿杰 · Java 后端开发工程师 — 个人简介</title>
+<meta name="description" content="明睿杰，Java 后端开发工程师，5 年经验，坐标武汉。擅长 Spring Boot / MySQL / Redis，关注工程质量与交付效率。">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%230E7C66"/><text x="32" y="42" font-family="monospace" font-size="26" font-weight="700" fill="%23F4F2EA" text-anchor="middle">&gt;_</text></svg>'>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* ============ 设计令牌 ============ */
+:root{
+  --paper:#F4F2EA;
+  --surface:#FCFBF7;
+  --ink:#18202E;
+  --ink-2:#5B6574;
+  --ink-3:#8A93A3;
+  --line:#DDD8C9;
+  --accent:#0E7C66;
+  --accent-strong:#0A5F4F;
+  --accent-soft:rgba(14,124,102,.10);
+  --term-bg:#101623;
+  --term-ink:#C9D3E0;
+  --term-dim:#6E7B8F;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --radius:12px;
+  --shadow:0 1px 2px rgba(24,32,46,.05),0 4px 16px rgba(24,32,46,.05);
+}
+[data-theme="dark"]{
+  --paper:#151A23;
+  --surface:#1B2230;
+  --ink:#E9E7DF;
+  --ink-2:#9AA6B8;
+  --ink-3:#6B7688;
+  --line:#2A3344;
+  --accent:#3ECF9F;
+  --accent-strong:#6FE0BA;
+  --accent-soft:rgba(62,207,159,.12);
+  --term-bg:#0C111A;
+  --term-ink:#C9D3E0;
+  --term-dim:#5F6C80;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  transition:background .25s ease,color .25s ease;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:var(--accent-strong);text-decoration:none}
+a:hover{text-decoration:underline}
+::selection{background:var(--accent);color:#fff}
+
+/* ============ 顶部导航 ============ */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;gap:18px;height:60px}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink)}
+.brand .mark{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-size:13px}
+.nav-links{display:flex;gap:4px;margin-left:12px}
+.nav-links a{color:var(--ink-2);font-size:14px;padding:6px 12px;border-radius:8px}
+.nav-links a:hover{color:var(--ink);background:var(--accent-soft);text-decoration:none}
+.nav-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.icon-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:9px;border:1px solid var(--line);
+  background:transparent;color:var(--ink-2);cursor:pointer;
+}
+.icon-btn:hover{color:var(--ink);border-color:var(--accent);background:var(--accent-soft)}
+
+/* ============ 按钮 ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid transparent;border-radius:9px;cursor:pointer;
+  font-family:var(--sans);font-size:14px;font-weight:500;
+  padding:8px 16px;transition:all .18s ease;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-strong);text-decoration:none}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--accent);background:var(--accent-soft);text-decoration:none}
+.btn-sm{padding:5px 11px;font-size:13px;border-radius:7px}
+
+/* ============ Hero ============ */
+.hero{padding:72px 0 64px;position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:52px;align-items:center}
+.eyebrow{font-family:var(--mono);font-size:13px;color:var(--accent-strong);margin-bottom:16px}
+.hero h1{font-size:clamp(52px,8vw,92px);font-weight:900;letter-spacing:-.02em;line-height:1.08}
+.hero h1 .dot{color:var(--accent)}
+.role-line{font-size:19px;color:var(--ink-2);margin:16px 0 8px;min-height:1.7em}
+.role-line .typing{font-family:var(--mono);color:var(--accent-strong)}
+.role-line .caret{display:inline-block;width:9px;height:1.15em;background:var(--accent);vertical-align:-.18em;margin-left:2px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-sub{font-size:14px;color:var(--ink-3);font-family:var(--mono)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:34px}
+.stat{padding:16px 14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:600;color:var(--accent-strong)}
+.stat span{font-size:12.5px;color:var(--ink-2)}
+/* 终端卡片 */
+.term{
+  background:var(--term-bg);border-radius:14px;padding:18px 20px 20px;
+  font-family:var(--mono);font-size:14px;line-height:1.85;color:var(--term-ink);
+  box-shadow:0 16px 48px rgba(12,17,26,.28);position:relative;overflow:hidden;
+}
+.term-head{display:flex;align-items:center;gap:7px;margin-bottom:14px}
+.term-head i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.term-head i:nth-child(1){background:#E4572E}
+.term-head i:nth-child(2){background:#E8B23A}
+.term-head i:nth-child(3){background:#3ECF9F}
+.term-title{margin-left:auto;font-size:11.5px;color:var(--term-dim)}
+.term .p{color:var(--term-dim)}
+.term .k{color:#7FD6BD}
+.term .v{color:#F2D98B}
+.term .out{color:var(--term-ink)}
+.term .blink{display:inline-block;width:8px;height:1.05em;background:#3ECF9F;vertical-align:-.18em;animation:blink 1s step-end infinite}
+
+/* ============ 章节通用 ============ */
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{margin-bottom:36px}
+.sec-head .tag{font-family:var(--mono);font-size:13px;color:var(--accent-strong)}
+.sec-head h2{font-size:clamp(26px,3.6vw,34px);font-weight:700;margin-top:6px;letter-spacing:-.01em}
+.sec-head .desc{color:var(--ink-2);font-size:14.5px;margin-top:8px;max-width:640px}
+
+/* ============ 关于 ============ */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:44px}
+.about-grid p{color:var(--ink-2);font-size:15.5px;margin-bottom:14px}
+.about-grid p strong{color:var(--ink)}
+.info-list{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.info-row{display:flex;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font-size:14px}
+.info-row:last-child{border-bottom:0}
+.info-row .ik{font-family:var(--mono);font-size:12px;color:var(--ink-3);padding-top:2px}
+.info-row .iv{color:var(--ink);text-align:right}
+
+/* ============ 技能 ============ */
+.skill-group{margin-bottom:20px}
+.skill-group .gt{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin-bottom:10px;letter-spacing:.04em}
+.skill-group .row{display:flex;flex-wrap:wrap;gap:10px}
+.skill-grid{display:block}
+.chip{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border:1px solid var(--line);border-radius:999px;background:var(--surface);
+  padding:7px 14px;font-size:13.5px;color:var(--ink);
+}
+.chip .nm{display:flex;align-items:center;gap:9px;min-width:0}
+.chip .lv{font-family:var(--mono);font-size:10px;color:var(--accent-strong);letter-spacing:2px;white-space:nowrap}
+
+/* ============ 时间轴（工作经历） ============ */
+.tl{display:grid;grid-template-columns:150px 30px minmax(0,1fr);column-gap:0;row-gap:0}
+.tl-item{display:contents}
+.tl-time{font-family:var(--mono);font-size:13px;color:var(--ink-3);padding:0 12px 40px 0;text-align:right;padding-top:4px}
+.tl-axis{position:relative;display:flex;justify-content:center}
+.tl-axis::before{content:"";position:absolute;top:6px;bottom:0;width:2px;background:var(--line)}
+.tl-item:last-child .tl-axis::before{bottom:calc(100% - 6px)}
+.tl-dot{display:block;flex:none;width:13px;height:13px;border-radius:50%;background:var(--paper);border:3px solid var(--accent);position:relative;z-index:1;margin-top:3px}
+.tl-body{padding-bottom:40px}
+.tl-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:18px 20px;box-shadow:var(--shadow)}
+.tl-card h3{font-size:16.5px;font-weight:700}
+.tl-card .role{font-family:var(--mono);font-size:12.5px;color:var(--accent-strong);margin:2px 0 10px}
+.tl-card ul{list-style:none;display:grid;gap:5px}
+.tl-card li{font-size:14px;color:var(--ink-2);padding-left:18px;position:relative}
+.tl-card li::before{content:"•";position:absolute;left:2px;color:var(--accent);font-family:var(--mono)}
+.tl-card .ach{margin-top:10px;font-size:12.5px;color:var(--ink-3);font-family:var(--mono)}
+.tl-card .ach b{color:var(--ink-2);font-weight:600}
+
+/* ============ 项目 ============ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.proj{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+  padding:20px;display:flex;flex-direction:column;gap:10px;
+  box-shadow:var(--shadow);transition:transform .18s ease,border-color .18s ease;
+}
+.proj:hover{transform:translateY(-3px);border-color:var(--accent)}
+.proj .pid{font-family:var(--mono);font-size:12px;color:var(--accent-strong)}
+.proj h3{font-size:16px;font-weight:700;line-height:1.4}
+.proj .meta{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.proj .desc{font-size:13.5px;color:var(--ink-2);line-height:1.65}
+.proj .stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.proj .stack i{font-style:normal;font-size:11.5px;font-family:var(--mono);color:var(--accent-strong);background:var(--accent-soft);padding:2px 8px;border-radius:999px}
+.proj .hl{font-size:12.5px;color:var(--ink-2);display:grid;gap:3px;list-style:none;padding-left:0;margin-top:auto}
+.proj .hl li{padding-left:14px;position:relative}
+.proj .hl li::before{content:"·";position:absolute;left:2px;color:var(--accent);font-weight:700}
+
+/* ============ 教育 & 证书 ============ */
+.edu-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:44px}
+.edu-item{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:16px 0;border-bottom:1px dashed var(--line)}
+.edu-item:first-child{padding-top:0}
+.edu-item .school{font-size:16px;font-weight:700}
+.edu-item .deg{font-size:13px;color:var(--ink-2);margin-top:2px}
+.edu-item .time{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.cert-list{display:grid;gap:10px}
+.cert{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:14px 16px;box-shadow:var(--shadow)}
+.cert .ic{width:34px;height:34px;border-radius:9px;background:var(--accent-soft);color:var(--accent-strong);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.cert b{font-size:14.5px;font-weight:600}
+.cert span{display:block;font-size:12px;color:var(--ink-3)}
+
+/* ============ 页脚联系 ============ */
+footer{padding:56px 0 72px;border-top:1px solid var(--line)}
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:44px}
+.contact h2{font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.01em;margin-bottom:12px}
+.contact .sub{color:var(--ink-2);font-size:14.5px;margin-bottom:22px;max-width:420px}
+.contact-links{display:flex;flex-wrap:wrap;gap:10px}
+.clink{
+  display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);
+  border-radius:10px;padding:10px 16px;font-size:14px;color:var(--ink);
+  background:var(--surface);transition:all .18s ease;
+}
+.clink:hover{border-color:var(--accent);background:var(--accent-soft);text-decoration:none;transform:translateY(-2px)}
+.clink svg{width:17px;height:17px;color:var(--accent-strong)}
+.foot-note{margin-top:44px;padding-top:20px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+
+/* ============ 编辑抽屉 ============ */
+.scrim{position:fixed;inset:0;background:rgba(16,20,30,.45);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:50}
+.scrim.show{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;right:0;height:100vh;width:min(540px,94vw);z-index:60;
+  background:var(--surface);border-left:1px solid var(--line);
+  transform:translateX(102%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.drawer.open{transform:none}
+.drawer-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:16px;font-weight:700;flex:1}
+.drawer-body{flex:1;overflow-y:auto;padding:20px}
+.drawer-foot{padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap}
+.drawer-foot .spacer{flex:1}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-bottom:6px}
+.fld input,.fld textarea,.fld select{
+  width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:8px;
+  background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;
+}
+.fld textarea{min-height:64px;resize:vertical;line-height:1.6}
+.fld input:focus,.fld textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.list-block{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px;background:var(--paper)}
+.list-block .lb-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.list-block .lb-head b{font-size:13.5px;flex:1}
+.fld-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.hint{font-size:12px;color:var(--ink-3);background:var(--accent-soft);border-radius:8px;padding:9px 12px;margin-bottom:18px;line-height:1.6}
+
+/* ============ Toast ============ */
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:80;
+  background:var(--ink);color:var(--paper);font-size:13.5px;padding:10px 20px;border-radius:10px;
+  opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* 浮动编辑按钮 */
+.fab{
+  position:fixed;right:22px;bottom:22px;z-index:45;
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent);color:#fff;border:none;border-radius:999px;
+  padding:12px 18px;font-size:14px;font-family:var(--sans);font-weight:500;cursor:pointer;
+  box-shadow:0 8px 28px rgba(10,95,79,.35);transition:all .2s ease;
+}
+.fab:hover{background:var(--accent-strong);transform:translateY(-2px)}
+
+/* ============ 响应式 ============ */
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .about-grid,.edu-grid,.contact{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .fab{display:none}
+  .icon-btn{width:40px;height:40px}
+  .btn-sm{padding:8px 14px;font-size:14px;min-height:38px}
+  input,textarea,select{font-size:16px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl{grid-template-columns:1fr;row-gap:0}
+  .tl-time{text-align:left;padding:0 0 6px}
+  .tl-axis{display:none}
+  .tl-item{padding-bottom:0}
+  .proj-grid{grid-template-columns:1fr}
+  section{padding:48px 0}
+  .hero{padding:52px 0 44px}
+}
+@media (max-width:440px){
+  .stats{grid-template-columns:1fr 1fr}
+  .wrap{padding:0 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <span class="brand"><span class="mark">&gt;_</span><span id="brand-name">明睿杰</span></span>
+    <nav class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#skills">技能</a>
+      <a href="#exp">经历</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme-btn" title="切换深浅色" aria-label="切换深浅色">
+        <svg id="theme-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="btn btn-primary btn-sm" id="open-edit">编辑资料</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">// 个人简介 · JAVA 后端开发 · 武汉</div>
+      <h1><span id="h-name">明睿杰</span><span class="dot">.</span></h1>
+      <div class="role-line"><span id="h-role"></span><span class="typing" id="typing"></span><span class="caret"></span></div>
+      <div class="hero-sub" id="hero-sub"></div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="term" aria-label="个人信息卡片">
+      <div class="term-head"><i></i><i></i><i></i><span class="term-title">arimirui@wuhan:~/profile</span></div>
+      <div id="term-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 关于我 ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">// 01 关于我</div>
+      <h2>把复杂问题拆成简单方案</h2>
+      <div class="desc">5 年 Java 后端开发经验，经历过支付、物业管理、政务平台等多种业务场景，习惯从业务出发设计系统。</div>
+    </div>
+    <div class="about-grid">
+      <div id="bio-para"></div>
+      <div class="info-list" id="info-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 技能 ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">// 02 技能栈</div>
+      <h2>熟练度与覆盖范围</h2>
+      <div class="desc">后端为主，数据库、缓存、前端与部署均有实际项目经验。</div>
+    </div>
+    <div class="skill-grid" id="skill-grid"></div>
+  </div>
+</section>
+
+<!-- ===== 工作经历 ===== -->
+<section id="exp">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">// 03 工作经历</div>
+      <h2>三段任职，覆盖三种业务形态</h2>
+      <div class="desc">从支付系统到物业服务与政务平台，始终承担核心后端开发与维护职责。</div>
+    </div>
+    <div class="tl" id="tl-list"></div>
+  </div>
+</section>
+
+<!-- ===== 项目经历 ===== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">// 04 项目经历</div>
+      <h2>从 0 到 1 与持续迭代</h2>
+      <div class="desc">独立搭建过完整系统，也做过支付、平台类项目的核心模块。</div>
+    </div>
+    <div class="proj-grid" id="proj-grid"></div>
+  </div>
+</section>
+
+<!-- ===== 教育 & 证书 ===== -->
+<section id="edu">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">// 05 教育 & 证书</div>
+      <h2>学习与认证</h2>
+    </div>
+    <div class="edu-grid">
+      <div id="edu-list"></div>
+      <div class="cert-list" id="cert-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 联系 ===== -->
+<footer id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2>联系我<span class="dot" style="color:var(--accent)">.</span></h2>
+      <div class="sub" id="c-sub"></div>
+      <div class="contact-links" id="contact-links"></div>
+    </div>
+    <div class="term" aria-label="联系信息终端">
+      <div class="term-head"><i></i><i></i><i></i><span class="term-title">contact.sh</span></div>
+      <div id="term-contact"></div>
+    </div>
+  </div>
+  <div class="wrap foot-note">
+    <span>© <span id="year">2026</span> 明睿杰 · 由 GitHub Pages 托管</span>
+    <span>点右下角「编辑资料」可自定义本页内容</span>
+    <span id="foot-theme"></span>
+  </div>
+</footer>
+
+<!-- 浮动编辑按钮 -->
+<button class="fab" id="fab">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+  编辑资料
+</button>
+
+<!-- 遮罩与编辑抽屉 -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-label="编辑资料">
+  <div class="drawer-head">
+    <h3>编辑个人资料</h3>
+    <button class="icon-btn" id="close-edit" aria-label="关闭">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="hint">修改内容仅保存在当前浏览器（localStorage）。要让访客看到新内容：导出 JSON 后发给我更新并重新发布，或直接把 JSON 内容同步进页面源码。</div>
+    <div id="drawer-form"></div>
+  </div>
+  <div class="drawer-foot">
+    <button class="btn btn-ghost btn-sm" id="btn-reset">恢复默认</button>
+    <button class="btn btn-ghost btn-sm" id="btn-export">导出 JSON</button>
+    <button class="btn btn-ghost btn-sm" id="btn-import">导入 JSON</button>
+    <input type="file" id="import-file" accept="application/json,.json" hidden>
+    <span class="spacer"></span>
+    <button class="btn btn-primary btn-sm" id="btn-save">保存更改</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ============================================================
+ * 页面默认内容（明睿杰 · Java 后端开发工程师）
+ * 想直接改源码默认内容：编辑下方 CONFIG 对象后重新发布即可；
+ * 普通用户可用页面右下角「编辑资料」在浏览器内自定义。
+ * ============================================================ */
+const CONFIG = {
+  basic: {
+    name: "明睿杰",
+    gender_age: "男 · 28岁",
+    role: "Java 后端开发工程师",
+    city: "武汉",
+    intent: "Java 后端开发",
+    salary: "11-13K",
+    phone: "15871713602",
+    email: "",
+    github: "https://github.com/Arimirui/profile-page",
+    tagline: "5 年 Java 后端开发经验，坐标武汉，擅长 Spring Boot / MySQL / Redis，关注工程质量与交付效率。",
+    roles: ["Java 后端开发工程师", "Spring Boot · MyBatis 实践者", "MySQL · Redis · Linux", "把复杂问题拆成简单方案"],
+    bio: [
+      "5 年 Java 后端开发经验，先后服务于支付、物业服务、政务平台等不同业务场景，熟悉从表结构设计、接口开发到部署上线的完整流程，独立搭建过完整业务系统。",
+      "工作中积极学习沟通、妥善协调协作，力求保质保量完成任务；对互联网行业充满兴趣，热爱编程，有较强的学习意向，具备较好的英文阅读与理解能力。"
+    ]
+  },
+  stats: { years: "5+", projects: "6", companies: "3", certs: "1" },
+  skills: [
+    { group: "后端", name: "Java 8 · 多线程", lv: 3 },
+    { group: "后端", name: "Spring Boot · MyBatis-Plus", lv: 3 },
+    { group: "后端", name: "Spring Security · JWT", lv: 2 },
+    { group: "后端", name: "RESTful API 设计", lv: 2 },
+    { group: "数据库", name: "MySQL（索引 / 事务 / 8.0 特性）", lv: 3 },
+    { group: "数据库", name: "Redis（五种数据类型）", lv: 2 },
+    { group: "前端", name: "HTML / CSS / JavaScript", lv: 2 },
+    { group: "前端", name: "Vue.js · AngularJS", lv: 2 },
+    { group: "工程", name: "Git 协作开发", lv: 3 },
+    { group: "工程", name: "Linux · Nginx · 部署上线", lv: 2 },
+    { group: "工程", name: "Activiti 工作流（BPMN / OA）", lv: 2 },
+    { group: "其他", name: "Python 3 基础", lv: 1 },
+    { group: "其他", name: "正则表达式", lv: 2 },
+    { group: "其他", name: "常用算法与设计模式", lv: 2 }
+  ],
+  experiences: [
+    {
+      company: "深圳市特发服务股份有限公司武汉分公司", role: "Java 开发", period: "2023.06 – 2023.12",
+      content: ["负责项目后台逻辑的开发及维护，参与数据库表设计及数据库维护", "及时响应修复项目中的 BUG，持续进行代码优化", "建立和编写 API 文档"],
+      achievements: ["特发物业管理系统", "特发服务内部管理系统"]
+    },
+    {
+      company: "武汉钮扣科技有限公司", role: "Java 开发", period: "2021.09 – 2022.11",
+      content: ["负责项目后台逻辑的开发及维护，参与数据库表设计及数据库维护", "参与项目的维护与部署工作", "及时响应修复项目中的 BUG，持续进行代码优化", "建立和编写开发文档"],
+      achievements: ["攀升电脑管家", "茅箭消防治理系统", "来堰返堰登记系统"]
+    },
+    {
+      company: "北京汇良金辰科技有限公司", role: "Java 开发", period: "2018.05 – 2021.09",
+      content: ["数据库表结构设计，接口文档编写", "BUG 修复，数据库维护", "后台搭建及部分功能模块开发，包括前端和后端", "接口性能优化"],
+      achievements: ["GXN 收单派单系统", "GPAY 支付系统"]
+    }
+  ],
+  projects: [
+    {
+      name: "特发物业管理系统", role: "后端开发", period: "2023.06 – 2023.12",
+      stack: ["Java", "MySQL", "Spring Boot", "Redis", "Spring Security", "JWT", "Activiti", "MyBatis"],
+      desc: "用于物业公司管理小区楼栋、车位、业主、员工信息及 OA 处理的系统。",
+      hl: ["独立搭建整个系统，基于 Redis + Spring Security + JWT 实现登录与权限管理", "使用 Activiti + BPMN 实现 OA 审批相关功能", "与产品、测试配合，按需求调整优化功能与页面"]
+    },
+    {
+      name: "特发服务内部管理系统", role: "后端开发", period: "2022.12 – 2023.06",
+      stack: ["Java", "MySQL", "Spring Boot", "Redis", "Activiti"],
+      desc: "管理公司内部资产、服装、宿舍、车辆、物业巡检等事务的系统。",
+      hl: ["独立设计数据库表结构，完成车辆、宿舍模块功能及页面", "使用 Activiti + BPMN 实现 OA 审批相关功能", "负责项目更新维护、BUG 排查与统计功能优化"]
+    },
+    {
+      name: "茅箭消防治理平台", role: "后端开发", period: "2021.10 – 2022.04",
+      stack: ["Java", "MySQL", "SpringMVC", "Vue", "Redis", "Tencent OSS"],
+      desc: "茅箭消防内部平台：任务上报下发、地图消防设施展示、数据展板与文件网盘，微信小程序按角色展示。",
+      hl: ["基于 Spring Security 实现登录（图片验证码、记住密码）", "对接腾讯 OSS 云存储保存上传文件，实现任务逾期微信推送", "使用宝塔 Linux 部署上线，参与技术选型与表结构设计"]
+    },
+    {
+      name: "攀升电脑管家", role: "Java 开发", period: "2022.05 – 2022.11",
+      stack: ["Java", "MySQL", "Spring Boot", "Redis", "Spring Security", "MyBatis"],
+      desc: "攀升设备系统安全软件：优化加速、空间清理、硬件检测、设备驱动等能力。",
+      hl: ["基于 Spring Security 实现登录，含验证码与记住密码", "对接攀升接口，用 Guava Cache 本地缓存优化耗时接口", "搭建后台管理系统完成应用商店数据维护与运营"]
+    },
+    {
+      name: "GXN 收单派单系统", role: "后端开发", period: "2019.07 – 2021.05",
+      stack: ["Grizzly", "AngularJS", "MySQL 8"],
+      desc: "运营、会员与派单一体化系统：接收订单分发会员，会员上下级邀请关系与分成。",
+      hl: ["会员注册含图片验证码、短信验证码与邀请码校验", "按钮级细粒度权限控制，接口 IP 黑白名单限制", "使用 MySQL 8 CTE、for update skip locked 等新特性"]
+    },
+    {
+      name: "GPAY 支付系统", role: "Java 开发", period: "2018.07 – 2021.05",
+      stack: ["Java", "MySQL", "Grizzly", "AngularJS"],
+      desc: "管理、商户与代理三后台的收款支付系统，支持商户接入与收银台。",
+      hl: ["对接商户并编写接入文档，管理后台更新与 BUG 修复", "使用 jQuery / HTML / CSS 开发与更新商户收银台", "基于 AngularJS 国际化实现商户后台中英双语切换"]
+    }
+  ],
+  education: [
+    { school: "湖北工业大学", degree: "本科 · 软件工程", period: "2021 – 2023" },
+    { school: "湖北水利水电职业技术学院", degree: "大专 · 计算机应用技术", period: "2014 – 2017" }
+  ],
+  certs: [
+    { name: "HarmonyOS 应用开发者基础认证", org: "华为" }
+  ]
+};
+
+/* ================= 基础工具 ================= */
+const $ = (s) => document.querySelector(s);
+const STORE_KEY = "mruijie_profile_v1";
+const THEME_KEY = "mruijie_theme_v1";
+const clone = (o) => JSON.parse(JSON.stringify(o));
+let data = null;
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) { const d = JSON.parse(raw); if (d && d.basic && d.skills) return d; }
+  } catch (e) { /* 忽略损坏数据 */ }
+  return clone(CONFIG);
+}
+
+function showToast(msg) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._h);
+  t._h = setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+/* ================= 主题 ================= */
+function applyTheme(t, persist) {
+  document.documentElement.setAttribute("data-theme", t);
+  $("#theme-icon").innerHTML = t === "dark"
+    ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>'
+    : '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>';
+  if (persist) localStorage.setItem(THEME_KEY, t);
+}
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(saved || (prefersDark ? "dark" : "light"), false);
+}
+$("#theme-btn").addEventListener("click", () => {
+  const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  applyTheme(next, true);
+});
+
+/* ================= 渲染 ================= */
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function render() {
+  const b = data.basic;
+  document.title = b.name + " · " + b.role + " — 个人简介";
+  document.querySelector('meta[name="description"]').setAttribute("content", b.tagline);
+  $("#brand-name").textContent = b.name;
+  $("#h-name").textContent = b.name;
+  $("#h-role").textContent = "";
+  $("#hero-sub").textContent = b.tagline;
+  $("#year").textContent = new Date().getFullYear();
+
+  // 统计
+  const st = data.stats;
+  const statDefs = [[st.years, "年 Java 经验"], [st.projects, "个完整项目"], [st.companies, "段公司经历"], [st.certs, "项专业认证"]];
+  $("#stats").innerHTML = statDefs.map(([v, l]) => '<div class="stat"><b>' + esc(v) + '</b><span>' + esc(l) + "</span></div>").join("");
+
+  // 终端卡片
+  $("#term-body").innerHTML =
+    '<div><span class="p">$</span> whoami</div>' +
+    '<div class="out">' + esc(b.name) + " · " + esc(b.gender_age) + "</div>" +
+    '<div><span class="p">$</span> cat job.json</div>' +
+    '<div><span class="k">{</span> <span class="k">"意向"</span>: <span class="v">"' + esc(b.intent) + '"</span>, <span class="k">"城市"</span>: <span class="v">"' + esc(b.city) + '"</span>, <span class="k">"期望"</span>: <span class="v">"' + esc(b.salary) + '"</span> <span class="k">}</span></div>' +
+    '<div><span class="p">$</span> ls skills/</div>' +
+    '<div class="out">' + esc(data.skills.slice(0, 6).map((s) => s.name.split("（")[0].split(" · ")[0]).join("  ")) + "</div>" +
+    '<div><span class="p">$</span> echo "欢迎来到我的主页"</div>' +
+    '<div class="out">欢迎来到我的主页<span class="blink"></span></div>';
+
+  // 关于
+  $("#bio-para").innerHTML = b.bio.map((p) => "<p>" + esc(p) + "</p>").join("");
+  const eduTop = data.education[0];
+  $("#info-list").innerHTML = [
+    ["电话", '<a href="tel:' + esc(b.phone) + '">' + esc(b.phone) + "</a>"],
+    ["年龄 / 性别", esc(b.gender_age)],
+    ["城市", esc(b.city)],
+    ["求职意向", esc(b.intent)],
+    ["期望薪资", esc(b.salary)],
+    ["最高学历", esc(eduTop ? eduTop.school + " · " + eduTop.degree : "—")],
+    ["语言能力", "中文 · 英文阅读"],
+    ["证书", esc(data.certs.map((c) => c.name).join("、"))]
+  ].map(([k, v]) => '<div class="info-row"><span class="ik">' + k + '</span><span class="iv">' + v + "</span></div>").join("");
+
+  // 技能（按分组）
+  const groups = [];
+  data.skills.forEach((s) => {
+    let g = groups.find((x) => x.name === s.group);
+    if (!g) { g = { name: s.group, items: [] }; groups.push(g); }
+    g.items.push(s);
+  });
+  $("#skill-grid").innerHTML = groups.map((g) =>
+    '<div class="skill-group"><div class="gt">' + esc(g.name) + "</div><div class=\"row\">" +
+    g.items.map((s) =>
+      '<span class="chip"><span class="nm">' + esc(s.name) + '</span><span class="lv">' + "●".repeat(s.lv) + "○".repeat(Math.max(0, 3 - s.lv)) + "</span></span>"
+    ).join("") + "</div></div>"
+  ).join("");
+
+  // 工作经历（时间轴）
+  $("#tl-list").innerHTML = data.experiences.map((e) =>
+    '<div class="tl-item"><div class="tl-time">' + esc(e.period) + '</div><div class="tl-axis"><span class="tl-dot"></span></div><div class="tl-body"><div class="tl-card"><h3>' + esc(e.company) + '</h3><div class="role">' + esc(e.role) + "</div><ul>" +
+    e.content.map((c) => "<li>" + esc(c) + "</li>").join("") + "</ul>" +
+    (e.achievements && e.achievements.length ? '<div class="ach"><b>业绩 · </b>' + esc(e.achievements.join(" / ")) + "</div>" : "") +
+    "</div></div></div>"
+  ).join("");
+
+  // 项目经历
+  $("#proj-grid").innerHTML = data.projects.map((p, i) =>
+    '<article class="proj"><div class="pid">P' + String(i + 1).padStart(2, "0") + " · " + esc(p.role) + '</div><h3>' + esc(p.name) + '</h3><div class="meta">' + esc(p.period) + '</div><p class="desc">' + esc(p.desc) + '</p><div class="stack">' +
+    p.stack.map((t) => "<i>" + esc(t) + "</i>").join("") + "</div><ul class=\"hl\">" +
+    p.hl.map((h) => "<li>" + esc(h) + "</li>").join("") + "</ul></article>"
+  ).join("");
+
+  // 教育 & 证书
+  $("#edu-list").innerHTML = data.education.map((e) =>
+    '<div class="edu-item"><div><div class="school">' + esc(e.school) + '</div><div class="deg">' + esc(e.degree) + '</div></div><span class="time">' + esc(e.period) + "</span></div>"
+  ).join("");
+  $("#cert-list").innerHTML = data.certs.map((c) =>
+    '<div class="cert"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></span><div><b>' + esc(c.name) + "</b><span>" + esc(c.org || "专业认证") + "</span></div></div>"
+  ).join("");
+
+  // 联系
+  $("#c-sub").textContent = b.tagline;
+  const links = [
+    { href: "tel:" + b.phone, label: b.phone, icon: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/>' }
+  ];
+  if (b.email) links.push({ href: "mailto:" + b.email, label: b.email, icon: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>' });
+  if (b.github) links.push({ href: b.github, label: b.github.replace(/^https?:\/\//, ""), icon: '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>' });
+  $("#contact-links").innerHTML = links.map((l) => '<a class="clink" href="' + esc(l.href) + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + l.icon + "</svg>" + esc(l.label) + "</a>").join("");
+
+  // 联系终端
+  $("#term-contact").innerHTML =
+    '<div><span class="p">$</span> echo $PHONE</div>' +
+    '<div class="out">' + esc(b.phone) + "</div>" +
+    (b.email ? '<div><span class="p">$</span> echo $EMAIL</div><div class="out">' + esc(b.email) + "</div>" : "") +
+    (b.github ? '<div><span class="p">$</span> git remote -v</div><div class="out">' + esc(b.github.replace(/^https?:\/\//, "")) + "</div>" : "") +
+    '<div><span class="p">$</span> echo "期待与你交流"</div>' +
+    '<div class="out">期待与你交流<span class="blink"></span></div>';
+}
+
+/* ================= 打字机效果 ================= */
+function startTyping() {
+  const el = $("#typing");
+  const roles = data.basic.roles && data.basic.roles.length ? data.basic.roles : [data.basic.role];
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    el.textContent = roles[0];
+    return;
+  }
+  let ri = 0, ci = 0, deleting = false;
+  (function tick() {
+    const word = roles[ri];
+    el.textContent = word.slice(0, ci);
+    if (!deleting && ci < word.length) { ci++; setTimeout(tick, 70); return; }
+    if (!deleting) { deleting = true; setTimeout(tick, 1500); return; }
+    if (ci > 0) { ci--; setTimeout(tick, 32); return; }
+    deleting = false; ri = (ri + 1) % roles.length; setTimeout(tick, 320);
+  })();
+}
+
+/* ================= 编辑抽屉 ================= */
+const drawer = $("#drawer"), scrim = $("#scrim");
+function openDrawer() { renderForm(); drawer.classList.add("open"); scrim.classList.add("show"); }
+function closeDrawer() { drawer.classList.remove("open"); scrim.classList.remove("show"); }
+$("#open-edit").addEventListener("click", openDrawer);
+$("#fab").addEventListener("click", openDrawer);
+$("#close-edit").addEventListener("click", closeDrawer);
+scrim.addEventListener("click", closeDrawer);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
+
+function fld(label, fid, value, tag, extra) {
+  const id = "f-" + fid;
+  if (tag === "textarea") {
+    return '<div class="fld"><label for="' + id + '">' + label + '</label><textarea id="' + id + '" data-fid="' + fid + '">' + esc(value || "") + "</textarea></div>";
+  }
+  if (tag === "select") {
+    return '<div class="fld"><label for="' + id + '">' + label + '</label><select id="' + id + '" data-fid="' + fid + '">' +
+      extra.map((o) => '<option value="' + esc(o) + '"' + (String(value) === String(o) ? " selected" : "") + ">" + esc(o) + "</option>").join("") + "</select></div>";
+  }
+  return '<div class="fld"><label for="' + id + '">' + label + '</label><input id="' + id + '" data-fid="' + fid + '" value="' + esc(value || "") + '"' + (extra === "multiline" ? "" : "") + "></div>";
+}
+
+const LIST_SCHEMA = {
+  skills: { title: "技能", row: (s) => fld("技能组", "group", s.group, "select", ["后端", "数据库", "前端", "工程", "其他"]) + fld("技能名", "name", s.name) + fld("熟练度", "lv", s.lv, "select", ["1", "2", "3"]) },
+  experiences: { title: "工作经历", row: (e) => fld("公司", "company", e.company) + fld("职位", "role", e.role) + fld("时间", "period", e.period) + fld("工作内容（每行一条）", "content", (e.content || []).join("\n"), "textarea") + fld("业绩项目（每行一条）", "achievements", (e.achievements || []).join("\n"), "textarea") },
+  projects: { title: "项目经历", row: (p) => fld("项目名", "name", p.name) + fld("角色", "role", p.role) + fld("时间", "period", p.period) + fld("技术栈（逗号分隔）", "stack", (p.stack || []).join(", ")) + fld("简介", "desc", p.desc, "textarea") + fld("亮点（每行一条）", "hl", (p.hl || []).join("\n"), "textarea") },
+  education: { title: "教育经历", row: (e) => fld("学校", "school", e.school) + fld("学历 · 专业", "degree", e.degree) + fld("时间", "period", e.period) },
+  certs: { title: "证书", row: (c) => fld("证书名称", "name", c.name) + fld("颁发机构", "org", c.org) }
+};
+
+function listBlockHtml(key, item) {
+  const s = LIST_SCHEMA[key];
+  return '<div class="list-block">' +
+    '<div class="lb-head"><b>' + s.title + '</b><button type="button" class="btn btn-ghost btn-sm" data-del="' + key + '">删除</button></div>' +
+    s.row(item || {}) + "</div>";
+}
+
+function renderForm() {
+  const b = data.basic;
+  let html = "";
+  html += '<div class="fld"><label>基本信息</label></div>';
+  html += fld("姓名", "b.name", b.name);
+  html += fld("性别 · 年龄", "b.gender_age", b.gender_age);
+  html += fld("职业头衔", "b.role", b.role);
+  html += fld("城市", "b.city", b.city);
+  html += fld("求职意向", "b.intent", b.intent);
+  html += fld("期望薪资", "b.salary", b.salary);
+  html += fld("电话", "b.phone", b.phone);
+  html += fld("邮箱（留空则不显示）", "b.email", b.email);
+  html += fld("GitHub 链接（留空则不显示）", "b.github", b.github);
+  html += fld("一句话简介", "b.tagline", b.tagline);
+  html += fld("轮播角色（逗号分隔）", "b.roles", (b.roles || []).join(", "));
+  html += fld("关于我（每行一段）", "b.bio", (b.bio || []).join("\n"), "textarea");
+  html += '<div class="fld"><label>数据统计（四个数字）</label></div>';
+  html += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">' +
+    fld("年经验", "s.years", data.stats.years) + fld("项目", "s.projects", data.stats.projects) + fld("公司", "s.companies", data.stats.companies) + fld("认证", "s.certs", data.stats.certs) +
+    "</div>";
+  html += '<div class="fld" style="margin-top:18px"><label>可增删的内容块</label></div>';
+  Object.keys(LIST_SCHEMA).forEach((key) => {
+    html += '<div class="list-wrap" data-list="' + key + '">' +
+      '<div class="fld-row" style="margin-bottom:10px"><b style="font-size:13.5px">' + LIST_SCHEMA[key].title + "</b><button type=\"button\" class=\"btn btn-primary btn-sm\" data-add=\"" + key + '">＋ 添加</button></div>' +
+      '<div class="list-container">' + (data[key] || []).map((it) => listBlockHtml(key, it)).join("") + "</div></div>";
+  });
+  $("#drawer-form").innerHTML = html;
+}
+
+$("#drawer-form").addEventListener("click", (e) => {
+  const addBtn = e.target.closest("[data-add]");
+  if (addBtn) {
+    const key = addBtn.getAttribute("data-add");
+    addBtn.closest(".list-wrap").querySelector(".list-container").insertAdjacentHTML("beforeend", listBlockHtml(key, {}));
+    return;
+  }
+  const delBtn = e.target.closest("[data-del]");
+  if (delBtn) delBtn.closest(".list-block").remove();
+});
+
+function collectForm() {
+  const d = clone(CONFIG);
+  // 标量
+  document.querySelectorAll("#drawer-form [data-fid]").forEach((el) => {
+    const fid = el.getAttribute("data-fid");
+    const val = el.value.trim();
+    if (fid.startsWith("b.")) {
+      if (fid === "b.roles") d.basic.roles = val.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
+      else if (fid === "b.bio") d.basic.bio = val.split(/\n/).map((s) => s.trim()).filter(Boolean);
+      else d.basic[fid.slice(2)] = val;
+    } else if (fid.startsWith("s.")) {
+      d.stats[fid.slice(2)] = val || "0";
+    }
+  });
+  // 列表
+  Object.keys(LIST_SCHEMA).forEach((key) => {
+    const wrap = document.querySelector('[data-list="' + key + '"]');
+    if (!wrap) return;
+    d[key] = [];
+    wrap.querySelectorAll(".list-block").forEach((blk) => {
+      const item = {};
+      blk.querySelectorAll("[data-fid]").forEach((el) => {
+        const f = el.getAttribute("data-fid");
+        const v = el.value.trim();
+        if (f === "content" || f === "achievements" || f === "hl") item[f] = v.split(/\n/).map((s) => s.trim()).filter(Boolean);
+        else if (f === "stack") item[f] = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
+        else if (f === "lv") item[f] = Math.min(3, Math.max(1, parseInt(v, 10) || 1));
+        else item[f] = v;
+      });
+      if (item.name || item.company || item.school) d[key].push(item);
+    });
+  });
+  return d;
+}
+
+$("#btn-save").addEventListener("click", () => {
+  data = collectForm();
+  if (!data.basic.name) { showToast("姓名不能为空"); return; }
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch (e) { showToast("保存失败：本地存储不可用"); return; }
+  render(); startTyping(); closeDrawer(); showToast("已保存到当前浏览器");
+});
+
+$("#btn-reset").addEventListener("click", () => {
+  if (!confirm("确定恢复为页面默认内容？当前浏览器中的修改将被清除。")) return;
+  localStorage.removeItem(STORE_KEY);
+  data = clone(CONFIG);
+  render(); startTyping(); renderForm(); showToast("已恢复默认内容");
+});
+
+$("#btn-export").addEventListener("click", () => {
+  const d = collectForm();
+  const blob = new Blob([JSON.stringify(d, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = data.basic.name + "-profile.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 500);
+  showToast("已导出 JSON 备份");
+});
+
+$("#btn-import").addEventListener("click", () => $("#import-file").click());
+$("#import-file").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const d = JSON.parse(reader.result);
+      if (!d.basic || !d.skills) throw new Error("bad");
+      data = d;
+      localStorage.setItem(STORE_KEY, JSON.stringify(data));
+      render(); startTyping(); renderForm(); closeDrawer();
+      showToast("导入成功");
+    } catch (err) {
+      showToast("导入失败：文件格式不正确");
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+});
+
+/* ================= 启动 ================= */
+initTheme();
+data = loadData();
+render();
+startTyping();
+</script>
+</body>
+</html>
