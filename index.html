@@ -90,7 +90,6 @@ a:hover{text-decoration:underline}
 .btn-primary:hover{background:var(--accent-strong);text-decoration:none}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--accent);background:var(--accent-soft);text-decoration:none}
-.btn-sm{padding:5px 11px;font-size:13px;border-radius:7px}
 
 /* ============ Hero ============ */
 .hero{padding:72px 0 64px;position:relative}
@@ -219,53 +218,6 @@ footer{padding:56px 0 72px;border-top:1px solid var(--line)}
 .clink svg{width:17px;height:17px;color:var(--accent-strong)}
 .foot-note{margin-top:44px;padding-top:20px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:12px;color:var(--ink-3)}
 
-/* ============ 编辑抽屉 ============ */
-.scrim{position:fixed;inset:0;background:rgba(16,20,30,.45);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:50}
-.scrim.show{opacity:1;pointer-events:auto}
-.drawer{
-  position:fixed;top:0;right:0;height:100vh;width:min(540px,94vw);z-index:60;
-  background:var(--surface);border-left:1px solid var(--line);
-  transform:translateX(102%);transition:transform .28s cubic-bezier(.4,0,.2,1);
-  display:flex;flex-direction:column;
-}
-.drawer.open{transform:none}
-.drawer-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
-.drawer-head h3{font-size:16px;font-weight:700;flex:1}
-.drawer-body{flex:1;overflow-y:auto;padding:20px}
-.drawer-foot{padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap}
-.drawer-foot .spacer{flex:1}
-.fld{margin-bottom:16px}
-.fld label{display:block;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-bottom:6px}
-.fld input,.fld textarea,.fld select{
-  width:100%;padding:8px 11px;border:1px solid var(--line);border-radius:8px;
-  background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;
-}
-.fld textarea{min-height:64px;resize:vertical;line-height:1.6}
-.fld input:focus,.fld textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
-.list-block{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px;background:var(--paper)}
-.list-block .lb-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.list-block .lb-head b{font-size:13.5px;flex:1}
-.fld-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
-.hint{font-size:12px;color:var(--ink-3);background:var(--accent-soft);border-radius:8px;padding:9px 12px;margin-bottom:18px;line-height:1.6}
-
-/* ============ Toast ============ */
-.toast{
-  position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:80;
-  background:var(--ink);color:var(--paper);font-size:13.5px;padding:10px 20px;border-radius:10px;
-  opacity:0;pointer-events:none;transition:all .25s ease;box-shadow:0 8px 30px rgba(0,0,0,.25);
-}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-
-/* 浮动编辑按钮 */
-.fab{
-  position:fixed;right:22px;bottom:22px;z-index:45;
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--accent);color:#fff;border:none;border-radius:999px;
-  padding:12px 18px;font-size:14px;font-family:var(--sans);font-weight:500;cursor:pointer;
-  box-shadow:0 8px 28px rgba(10,95,79,.35);transition:all .2s ease;
-}
-.fab:hover{background:var(--accent-strong);transform:translateY(-2px)}
-
 /* ============ 响应式 ============ */
 @media (max-width:920px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
@@ -274,9 +226,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--line)}
 }
 @media (max-width:760px){
   .nav-links{display:none}
-  .fab{display:none}
   .icon-btn{width:40px;height:40px}
-  .btn-sm{padding:8px 14px;font-size:14px;min-height:38px}
   input,textarea,select{font-size:16px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .tl{grid-template-columns:1fr;row-gap:0}
@@ -310,7 +260,6 @@ footer{padding:56px 0 72px;border-top:1px solid var(--line)}
       <button class="icon-btn" id="theme-btn" title="切换深浅色" aria-label="切换深浅色">
         <svg id="theme-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
-      <button class="btn btn-primary btn-sm" id="open-edit">编辑资料</button>
     </div>
   </div>
 </header>
@@ -412,48 +361,15 @@ footer{padding:56px 0 72px;border-top:1px solid var(--line)}
   </div>
   <div class="wrap foot-note">
     <span>© <span id="year">2026</span> 明睿杰 · 由 GitHub Pages 托管</span>
-    <span>点右下角「编辑资料」可自定义本页内容</span>
     <span id="foot-theme"></span>
   </div>
 </footer>
-
-<!-- 浮动编辑按钮 -->
-<button class="fab" id="fab">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-  编辑资料
-</button>
-
-<!-- 遮罩与编辑抽屉 -->
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" role="dialog" aria-label="编辑资料">
-  <div class="drawer-head">
-    <h3>编辑个人资料</h3>
-    <button class="icon-btn" id="close-edit" aria-label="关闭">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <div class="drawer-body">
-    <div class="hint">修改内容仅保存在当前浏览器（localStorage）。要让访客看到新内容：导出 JSON 后发给我更新并重新发布，或直接把 JSON 内容同步进页面源码。</div>
-    <div id="drawer-form"></div>
-  </div>
-  <div class="drawer-foot">
-    <button class="btn btn-ghost btn-sm" id="btn-reset">恢复默认</button>
-    <button class="btn btn-ghost btn-sm" id="btn-export">导出 JSON</button>
-    <button class="btn btn-ghost btn-sm" id="btn-import">导入 JSON</button>
-    <input type="file" id="import-file" accept="application/json,.json" hidden>
-    <span class="spacer"></span>
-    <button class="btn btn-primary btn-sm" id="btn-save">保存更改</button>
-  </div>
-</aside>
-
-<div class="toast" id="toast" role="status"></div>
 
 <script>
 "use strict";
 /* ============================================================
  * 页面默认内容（明睿杰 · Java 后端开发工程师）
- * 想直接改源码默认内容：编辑下方 CONFIG 对象后重新发布即可；
- * 普通用户可用页面右下角「编辑资料」在浏览器内自定义。
+ * 想修改页面内容：直接编辑下方 CONFIG 对象后重新发布即可。
  * ============================================================ */
 const CONFIG = {
   basic: {
@@ -465,7 +381,7 @@ const CONFIG = {
     salary: "11-13K",
     phone: "15871713602",
     email: "",
-    github: "https://github.com/Arimirui/profile-page",
+    github: "https://github.com/Arimirui",
     tagline: "5 年 Java 后端开发经验，坐标武汉，擅长 Spring Boot / MySQL / Redis，关注工程质量与交付效率。",
     roles: ["Java 后端开发工程师", "Spring Boot · MyBatis 实践者", "MySQL · Redis · Linux", "把复杂问题拆成简单方案"],
     bio: [
@@ -556,26 +472,9 @@ const CONFIG = {
 
 /* ================= 基础工具 ================= */
 const $ = (s) => document.querySelector(s);
-const STORE_KEY = "mruijie_profile_v1";
 const THEME_KEY = "mruijie_theme_v1";
 const clone = (o) => JSON.parse(JSON.stringify(o));
-let data = null;
-
-function loadData() {
-  try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (raw) { const d = JSON.parse(raw); if (d && d.basic && d.skills) return d; }
-  } catch (e) { /* 忽略损坏数据 */ }
-  return clone(CONFIG);
-}
-
-function showToast(msg) {
-  const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(t._h);
-  t._h = setTimeout(() => t.classList.remove("show"), 2600);
-}
+const data = clone(CONFIG);
 
 /* ================= 主题 ================= */
 function applyTheme(t, persist) {
@@ -715,167 +614,8 @@ function startTyping() {
   })();
 }
 
-/* ================= 编辑抽屉 ================= */
-const drawer = $("#drawer"), scrim = $("#scrim");
-function openDrawer() { renderForm(); drawer.classList.add("open"); scrim.classList.add("show"); }
-function closeDrawer() { drawer.classList.remove("open"); scrim.classList.remove("show"); }
-$("#open-edit").addEventListener("click", openDrawer);
-$("#fab").addEventListener("click", openDrawer);
-$("#close-edit").addEventListener("click", closeDrawer);
-scrim.addEventListener("click", closeDrawer);
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
-
-function fld(label, fid, value, tag, extra) {
-  const id = "f-" + fid;
-  if (tag === "textarea") {
-    return '<div class="fld"><label for="' + id + '">' + label + '</label><textarea id="' + id + '" data-fid="' + fid + '">' + esc(value || "") + "</textarea></div>";
-  }
-  if (tag === "select") {
-    return '<div class="fld"><label for="' + id + '">' + label + '</label><select id="' + id + '" data-fid="' + fid + '">' +
-      extra.map((o) => '<option value="' + esc(o) + '"' + (String(value) === String(o) ? " selected" : "") + ">" + esc(o) + "</option>").join("") + "</select></div>";
-  }
-  return '<div class="fld"><label for="' + id + '">' + label + '</label><input id="' + id + '" data-fid="' + fid + '" value="' + esc(value || "") + '"' + (extra === "multiline" ? "" : "") + "></div>";
-}
-
-const LIST_SCHEMA = {
-  skills: { title: "技能", row: (s) => fld("技能组", "group", s.group, "select", ["后端", "数据库", "前端", "工程", "其他"]) + fld("技能名", "name", s.name) + fld("熟练度", "lv", s.lv, "select", ["1", "2", "3"]) },
-  experiences: { title: "工作经历", row: (e) => fld("公司", "company", e.company) + fld("职位", "role", e.role) + fld("时间", "period", e.period) + fld("工作内容（每行一条）", "content", (e.content || []).join("\n"), "textarea") + fld("业绩项目（每行一条）", "achievements", (e.achievements || []).join("\n"), "textarea") },
-  projects: { title: "项目经历", row: (p) => fld("项目名", "name", p.name) + fld("角色", "role", p.role) + fld("时间", "period", p.period) + fld("技术栈（逗号分隔）", "stack", (p.stack || []).join(", ")) + fld("简介", "desc", p.desc, "textarea") + fld("亮点（每行一条）", "hl", (p.hl || []).join("\n"), "textarea") },
-  education: { title: "教育经历", row: (e) => fld("学校", "school", e.school) + fld("学历 · 专业", "degree", e.degree) + fld("时间", "period", e.period) },
-  certs: { title: "证书", row: (c) => fld("证书名称", "name", c.name) + fld("颁发机构", "org", c.org) }
-};
-
-function listBlockHtml(key, item) {
-  const s = LIST_SCHEMA[key];
-  return '<div class="list-block">' +
-    '<div class="lb-head"><b>' + s.title + '</b><button type="button" class="btn btn-ghost btn-sm" data-del="' + key + '">删除</button></div>' +
-    s.row(item || {}) + "</div>";
-}
-
-function renderForm() {
-  const b = data.basic;
-  let html = "";
-  html += '<div class="fld"><label>基本信息</label></div>';
-  html += fld("姓名", "b.name", b.name);
-  html += fld("性别 · 年龄", "b.gender_age", b.gender_age);
-  html += fld("职业头衔", "b.role", b.role);
-  html += fld("城市", "b.city", b.city);
-  html += fld("求职意向", "b.intent", b.intent);
-  html += fld("期望薪资", "b.salary", b.salary);
-  html += fld("电话", "b.phone", b.phone);
-  html += fld("邮箱（留空则不显示）", "b.email", b.email);
-  html += fld("GitHub 链接（留空则不显示）", "b.github", b.github);
-  html += fld("一句话简介", "b.tagline", b.tagline);
-  html += fld("轮播角色（逗号分隔）", "b.roles", (b.roles || []).join(", "));
-  html += fld("关于我（每行一段）", "b.bio", (b.bio || []).join("\n"), "textarea");
-  html += '<div class="fld"><label>数据统计（四个数字）</label></div>';
-  html += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">' +
-    fld("年经验", "s.years", data.stats.years) + fld("项目", "s.projects", data.stats.projects) + fld("公司", "s.companies", data.stats.companies) + fld("认证", "s.certs", data.stats.certs) +
-    "</div>";
-  html += '<div class="fld" style="margin-top:18px"><label>可增删的内容块</label></div>';
-  Object.keys(LIST_SCHEMA).forEach((key) => {
-    html += '<div class="list-wrap" data-list="' + key + '">' +
-      '<div class="fld-row" style="margin-bottom:10px"><b style="font-size:13.5px">' + LIST_SCHEMA[key].title + "</b><button type=\"button\" class=\"btn btn-primary btn-sm\" data-add=\"" + key + '">＋ 添加</button></div>' +
-      '<div class="list-container">' + (data[key] || []).map((it) => listBlockHtml(key, it)).join("") + "</div></div>";
-  });
-  $("#drawer-form").innerHTML = html;
-}
-
-$("#drawer-form").addEventListener("click", (e) => {
-  const addBtn = e.target.closest("[data-add]");
-  if (addBtn) {
-    const key = addBtn.getAttribute("data-add");
-    addBtn.closest(".list-wrap").querySelector(".list-container").insertAdjacentHTML("beforeend", listBlockHtml(key, {}));
-    return;
-  }
-  const delBtn = e.target.closest("[data-del]");
-  if (delBtn) delBtn.closest(".list-block").remove();
-});
-
-function collectForm() {
-  const d = clone(CONFIG);
-  // 标量
-  document.querySelectorAll("#drawer-form [data-fid]").forEach((el) => {
-    const fid = el.getAttribute("data-fid");
-    const val = el.value.trim();
-    if (fid.startsWith("b.")) {
-      if (fid === "b.roles") d.basic.roles = val.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
-      else if (fid === "b.bio") d.basic.bio = val.split(/\n/).map((s) => s.trim()).filter(Boolean);
-      else d.basic[fid.slice(2)] = val;
-    } else if (fid.startsWith("s.")) {
-      d.stats[fid.slice(2)] = val || "0";
-    }
-  });
-  // 列表
-  Object.keys(LIST_SCHEMA).forEach((key) => {
-    const wrap = document.querySelector('[data-list="' + key + '"]');
-    if (!wrap) return;
-    d[key] = [];
-    wrap.querySelectorAll(".list-block").forEach((blk) => {
-      const item = {};
-      blk.querySelectorAll("[data-fid]").forEach((el) => {
-        const f = el.getAttribute("data-fid");
-        const v = el.value.trim();
-        if (f === "content" || f === "achievements" || f === "hl") item[f] = v.split(/\n/).map((s) => s.trim()).filter(Boolean);
-        else if (f === "stack") item[f] = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
-        else if (f === "lv") item[f] = Math.min(3, Math.max(1, parseInt(v, 10) || 1));
-        else item[f] = v;
-      });
-      if (item.name || item.company || item.school) d[key].push(item);
-    });
-  });
-  return d;
-}
-
-$("#btn-save").addEventListener("click", () => {
-  data = collectForm();
-  if (!data.basic.name) { showToast("姓名不能为空"); return; }
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch (e) { showToast("保存失败：本地存储不可用"); return; }
-  render(); startTyping(); closeDrawer(); showToast("已保存到当前浏览器");
-});
-
-$("#btn-reset").addEventListener("click", () => {
-  if (!confirm("确定恢复为页面默认内容？当前浏览器中的修改将被清除。")) return;
-  localStorage.removeItem(STORE_KEY);
-  data = clone(CONFIG);
-  render(); startTyping(); renderForm(); showToast("已恢复默认内容");
-});
-
-$("#btn-export").addEventListener("click", () => {
-  const d = collectForm();
-  const blob = new Blob([JSON.stringify(d, null, 2)], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = data.basic.name + "-profile.json";
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 500);
-  showToast("已导出 JSON 备份");
-});
-
-$("#btn-import").addEventListener("click", () => $("#import-file").click());
-$("#import-file").addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      const d = JSON.parse(reader.result);
-      if (!d.basic || !d.skills) throw new Error("bad");
-      data = d;
-      localStorage.setItem(STORE_KEY, JSON.stringify(data));
-      render(); startTyping(); renderForm(); closeDrawer();
-      showToast("导入成功");
-    } catch (err) {
-      showToast("导入失败：文件格式不正确");
-    }
-  };
-  reader.readAsText(file);
-  e.target.value = "";
-});
-
 /* ================= 启动 ================= */
 initTheme();
-data = loadData();
 render();
 startTyping();
 </script>
